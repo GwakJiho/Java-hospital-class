@@ -1,6 +1,9 @@
 package hospital;
 
 import java.util.ArrayList;
+
+import person.Patient;
+import person.Staff;
 public class Room {
 	ArrayList<Integer> room_list  = new ArrayList<Integer>() {
 		{
@@ -10,11 +13,28 @@ public class Room {
 		}
 	};
 	
-	public int length() {
-		return room_list.size();
+	public Room(int num) {
+		this.room = num;
 	}
-	public int get_room(int index) {
-		return room_list.get(index);
+	
+	private int room;
+	ArrayList <Patient> List = new ArrayList<>();
+	
+	
+	public void add_Member(Patient s) {
+		this.List.add(s);
+	}
+	
+	public int get_room() {
+		return this.room;
+	}
+	
+	public void get_room_memeber() {
+		System.out.print("\n" + room + "호 실 명단 : ");
+		for (Patient p : List) {
+			System.out.print(p.get_name() + " ");
+		}
+		
 	}
 	
 }

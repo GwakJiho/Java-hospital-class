@@ -1,6 +1,6 @@
 package person;
 
-public class Person {
+abstract class Person {
 	protected String name;
 	protected String birthDate;
 	protected String gender;
@@ -13,10 +13,6 @@ public class Person {
 		this.gender = gender;
 		this.phone_num = phone;
 	}
-	public String get_name() {
-		return this.name;
-	}
-	public void Search_person(String name) {
-		
-	}
+	
+	abstract String get_name();
 }

@@ -2,7 +2,8 @@ package person;
 
 import java.util.HashMap;
 
-import medical.Medical_department;
+import medical.*;
+
 
 public class Staff extends Person {
 	HashMap <Integer, String> staff_ = new HashMap<Integer, String>(){
@@ -38,9 +39,21 @@ public class Staff extends Person {
 		return this.Staff_id;
 	}
 	public String get_department() {
-		return dt.get_departments(department_id);
+		return dt.get_departments(this.department_id);
 	}
-	
+	public void add_team(Medical_personal MP) { //팀에 추가
+		Medical_department team = MP.set_team(this.get_department());
+		System.out.println(this.get_name() + " 을(를) " + this.get_department() +"에 추가합니다.");
+		team.add_Member(this);
+	}
+	public void get_team_member(Medical_personal MP) {
+		Medical_department team = MP.set_team(this.get_department());
+		team.get_Member();
+	}
+	@Override
+	public String get_name() {
+		return this.name;
+	}
 	
 	
 }
@@ -57,8 +70,7 @@ class Doctor extends Staff {
 		if(name.equals(get_name()) ) {
 			System.out.printf("%d, %s, %s\n", get_staff_id(), staff_.get(staff_code), get_department());
 		}
-	}
-	
+	}	
 }
 
 class Nurse extends Staff{
@@ -69,11 +81,10 @@ class Nurse extends Staff{
 		this.staff_code = staff_code;
 	}
 
-	Staff nurse;
 	
 	void searchNurse(String name) {
-		if(name.equals(nurse.get_name()) ){
-			System.out.println(nurse.get_staff_id());
+		if(name.equals(this.get_name()) ){
+			System.out.println(this.get_staff_id());
 		}
 	}
 }
