@@ -3,6 +3,7 @@ package hospital;
 import java.util.ArrayList;
 
 public class Room_person {
+	private int room_num;
 	ArrayList <Room> room = new ArrayList<>();
 	
 	public Room set_room(int num) {
@@ -12,11 +13,12 @@ public class Room_person {
 			}
 		}
 		Room r = new Room(num);
+		
+		room_num = num;
 		room.add(r);
 		return r;
 	}
-	public void get_room() {
-		System.out.print(room);
+	public int get_room_num() {
+		return room_num;
 	}
-	
 }

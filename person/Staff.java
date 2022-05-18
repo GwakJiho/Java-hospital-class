@@ -22,7 +22,6 @@ public class Staff extends Person {
 	public Staff(String name, String birth, String gender, String phone,
 			int department_id, int age, int stf_id, int year) {
 		super(name, birth, gender, phone);
-		
 		this.department_id = department_id;
 		this.age = age;
 		this.Staff_id = stf_id;
@@ -41,6 +40,7 @@ public class Staff extends Person {
 	public String get_department() {
 		return dt.get_departments(this.department_id);
 	}
+	
 	public void add_team(Medical_personal MP) { //팀에 추가
 		Medical_department team = MP.set_team(this.get_department());
 		System.out.println(this.get_name() + " 을(를) " + this.get_department() +"에 추가합니다.");

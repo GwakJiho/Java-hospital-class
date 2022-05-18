@@ -1,6 +1,6 @@
 package person;
 
-abstract class Person {
+public class Person {
 	protected String name;
 	protected String birthDate;
 	protected String gender;
@@ -14,5 +14,31 @@ abstract class Person {
 		this.phone_num = phone;
 	}
 	
-	abstract String get_name();
+	public String get_name() {
+		return this.name;
+	}
+	public String get_birth() {
+		return this.birthDate;
+	}
+	public String get_gender(){
+		return this.gender;
+	}
+	public String get_phone_num(){
+		return this.phone_num;
+	}
+	
+	public void set_name(String name){
+		this.name = name;
+	}
+	public void set_birth(String date){
+		this.birthDate = date;
+	}
+	public void set_gender(String gender){
+		this.gender = gender;
+	}
+	public void set_phone_num(String num){
+		this.phone_num = num;
+	}
+	
 }
+	

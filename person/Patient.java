@@ -16,21 +16,35 @@ public class Patient extends Person{
 	
 	Medical_department dt = new Medical_department();
 	//생성자
-	public Patient(String name, String birth, String gender , String phone, 
+	public Patient(String name, String birth, String gender , String phone,  // 환자 추가
 			int id, int age, String sick, int depart) {
 		super(name, birth,  gender,  phone);
+		
 		this.patient_id = id;
 		this.age = age;   
 		this.sickness = sick;
 		this.department = depart;
-		
 	}
 	
-	public void Search_patient(String name) {  //환자 검색
+	
+	public void Search_patient(String name) {  //이름으로 환자 검색
 		if(this.name.equals(name)) {
 			System.out.printf("%s %s %d %s ", sickness, dt.get_departments(department), age, birthDate);
 		}
 	}
+	
+	public void renewal_Room(Room_person r, int num, int department) { //환자에서 person 에 상속받은 데이터는 고유적이기 떄문에 가변데이터 Room ,sickenss, department 만 변경
+		Room room = r.set_room(r.get_room_num());
+		room.delete_room(this);
+		Room new_room = r.set_room(num);
+		new_room.add_Member(this);
+		this.department = department;	
+	}
+	
+	public void renewal_sickness(String sick) {
+		this.sickness = sick;
+	}
+	
 	
 	public void setting_Admission(int manager,  int num, Room_person r) { // 입원처리
 		this.doctor_id = manager;
@@ -41,14 +55,10 @@ public class Patient extends Person{
 	}
 	
 	
-	public void Discharge() {
+	public void Discharge() { // 퇴원처리
 		this.doctor_id = 0;
 		this.room_num = 0;
 	}
 
-	@Override
-	public String get_name() {
-		return this.name;
-	}
 	
 }

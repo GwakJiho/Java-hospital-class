@@ -6,6 +6,11 @@ import medical.Medical_personal;
 
 public class Main {
 	
+		
+	public void Delete_object(Person obj) {
+		obj = null;
+	}
+	
 	public static void main(String[] args) {
 			Room_person Rp = new Room_person();
 			Medical_personal s = new Medical_personal();
@@ -41,6 +46,9 @@ public class Main {
 			Room R = Rp.set_room(601);
 			R.get_room_memeber();
 			
+			
+			
 		}
+	
 	}
 

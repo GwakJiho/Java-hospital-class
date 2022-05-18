@@ -28,6 +28,9 @@ public class Room {
 	public int get_room() {
 		return this.room;
 	}
+	public void delete_room(Patient s) {
+		this.List.remove(s);
+	}
 	
 	public void get_room_memeber() {
 		System.out.print("\n" + room + "호 실 명단 : ");
