@@ -1,5 +1,6 @@
 package person;
 
+import gui.Main_Frame;
 import hospital.Room;
 import hospital.Room_person;
 import medical.Medical_personal;
@@ -47,7 +48,7 @@ public class Main {
 			R.get_room_memeber();
 			
 			
-			
+			new Main_Frame();
 		}
 	
 	}
