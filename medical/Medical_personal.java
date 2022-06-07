@@ -18,9 +18,6 @@ public class Medical_personal{
 		teams.add(tm);
 		return tm;
 	}
-	
-	
-	
-	
+
 }
  

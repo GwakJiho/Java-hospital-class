@@ -1,14 +1,16 @@
 package person;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import medical.*;
+
 
 
 public class Staff extends Person {
 	HashMap <Integer, String> staff_ = new HashMap<Integer, String>(){
 		{
-			put(1, "의사");put(2,"간호사"); put(3, "안전직원"); put(4,"보안관리직원");
+			put(1, "의사");put(2,"간호사"); put(3,"보안관리직원");
 		}
 	};
 	
@@ -18,27 +20,56 @@ public class Staff extends Person {
 	protected int age;
 	protected int Staff_id;
 	protected int year;
+	protected String stf_code;
+	
+	public Staff() {};
+
 	
 	public Staff(String name, String birth, String gender, String phone,
-			int department_id, int age, int stf_id, int year) {
+			int department_id, int age, int stf_id, String stf_code) {
 		super(name, birth, gender, phone);
 		this.department_id = department_id;
 		this.age = age;
 		this.Staff_id = stf_id;
-		this.year = year;
+		this.stf_code = stf_code;
+	}
+	public int get_code(String job) {
+	        for (Integer key : staff_.keySet()) {
+	            if (job.equals(staff_.get(key))) {
+	                return key;
+	            }
+	        }
+	        return 0;
+	}
+	public String get_job(int key) {
+		return staff_.get(key);
 	}
 	
-	void move_department(int code) {
-		this.department_id =code;
-	}
+	
 	public void change_staff_id(int id) {
 		this.Staff_id = id;
+	}
+	
+	public int get_age() {
+		return this.age;
 	}
 	public int get_staff_id() {
 		return this.Staff_id;
 	}
+	
 	public String get_department() {
 		return dt.get_departments(this.department_id);
+	}
+	
+	
+	public void move_department(Medical_personal MP, int code) {
+		Medical_department team = MP.set_team(this.get_department());
+		team.delete_Member(this);
+		this.department_id =code;
+		System.out.println(this.get_name() + " 을(를) " + this.get_department() +"로 이동합니다.");
+		Medical_department team1 = MP.set_team(this.get_department());
+		team1.add_Member(this);
+		
 	}
 	
 	public void add_team(Medical_personal MP) { //팀에 추가
@@ -46,68 +77,36 @@ public class Staff extends Person {
 		System.out.println(this.get_name() + " 을(를) " + this.get_department() +"에 추가합니다.");
 		team.add_Member(this);
 	}
+	
 	public void get_team_member(Medical_personal MP) {
 		Medical_department team = MP.set_team(this.get_department());
 		team.get_Member();
 	}
+	
+	public void delete_team(Medical_personal MP) { //팀에서 삭제
+		Medical_department team = MP.set_team(this.get_department());
+		System.out.println(this.get_name() + " 을(를) " + this.get_department() +"에서 삭제합니다.");
+		team.delete_Member(this);
+	}
+	
 	@Override
 	public String get_name() {
 		return this.name;
 	}
-	
-	
-}
-
-class Doctor extends Staff {
-	private int staff_code ;
-	public Doctor(String name, String birth, String gender, String phone,
-			int dep_id, int age, int stf_id, int year, int staff_code) {
-		super(name, birth, gender, phone, dep_id, age, stf_id, year);
-		this.staff_code = staff_code;
-	}
-
-	void searchDoctor(String name) {
+	void searchStaff(String name) {
 		if(name.equals(get_name()) ) {
-			System.out.printf("%d, %s, %s\n", get_staff_id(), staff_.get(staff_code), get_department());
+			System.out.printf("%d, %s, %s\n", get_staff_id() , get_department());
 		}
 	}	
-}
-
-class Nurse extends Staff{
-	private int staff_code;
-	public Nurse(String name, String birth, String gender, String phone, 
-			int dep_id, int age, int stf_id, int year, int staff_code) {
-		super(name, birth, gender, phone, dep_id, age, stf_id, year);
-		this.staff_code = staff_code;
-	}
-
 	
-	void searchNurse(String name) {
-		if(name.equals(this.get_name()) ){
-			System.out.println(this.get_staff_id());
-		}
-	}
-}
-
-class Programmer extends Staff{
-	private int staff_code;
-	public Programmer(String name, String birth, String gender, String phone, 
-			int department_id, int age, int stf_id, int year) {
-		super(name, birth, gender, phone, department_id, age, stf_id, year);
-		this.staff_code = 4;
-	}
-	void searchPro(String name) {
-		if(name.equals(get_name()) ) {
-			System.out.printf("%d, %s, %s\n", get_staff_id(), staff_.get(staff_code), get_department());
-		}
+	public String get_job() {
+		return stf_code;
 	}
 	
-	
 }
-class Schedule{
-	public Schedule(Staff s) {
-		// 나중에
-	}
-}
+
+
+
+
 
 
